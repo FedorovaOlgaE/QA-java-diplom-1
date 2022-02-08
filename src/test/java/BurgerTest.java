@@ -23,50 +23,45 @@ public class BurgerTest {
     Ingredient ingredient;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         burger = new Burger();
     }
 
-    @Test
-    public void setBunsTest(){
-        burger.setBuns(bun);
-        assertEquals(burger.bun, bun);
-        System.out.println(burger.bun);
-    }
 
     @Test
-    public void addIngredientTest(){
+    public void addIngredientTest() {
         burger.addIngredient(ingredient);
-        assertNotNull(burger.ingredients);
+        assertNotNull("Что-то не так с добавлением ингредиентов", burger.ingredients);
     }
 
     @Test
-    public void removeIngredientTest(){
+    public void removeIngredientTest() {
         burger.addIngredient(ingredient);
         burger.removeIngredient(0);
-        assertTrue(burger.ingredients.isEmpty());
+        assertTrue("Длина списка не совпадает", burger.ingredients.isEmpty());
     }
+
     @Test
-    public void moveIngredientTest(){
+    public void moveIngredientTest() {
         burger.addIngredient(new Ingredient(IngredientType.SAUCE, "name1", 200));
         burger.addIngredient(new Ingredient(IngredientType.FILLING, "name2", 100));
         burger.moveIngredient(0, 1);
-        assertEquals("name1", burger.ingredients.get(1).name);
+        assertEquals("Имя ингредиента не совпадает", "name1", burger.ingredients.get(1).name);
     }
 
     @Test
-    public void getPriceTest(){
+    public void getPriceTest() {
         float price = 100;
         float expectedPrice = price * 2 + price;
         when(bun.getPrice()).thenReturn(price);
         when(ingredient.getPrice()).thenReturn(price);
         burger.setBuns(bun);
         burger.addIngredient(ingredient);
-        assertEquals(expectedPrice, burger.getPrice(), 0);
+        assertEquals("Расчитаная цена не совпадает", expectedPrice, burger.getPrice(), 0);
     }
 
     @Test
-    public void getReceiptTest(){
+    public void getReceiptTest() {
         float bunPrice = 100f;
         Mockito.when(bun.getPrice()).thenReturn(bunPrice);
 
@@ -88,8 +83,7 @@ public class BurgerTest {
 
         String expectedReceipt = String.format("(==== black bun ====)%n= filling cutlet =%n(==== black bun ====)%n%nPrice: 300,000000%n");
 
-       assertEquals(expectedReceipt, actualReceipt);
-       System.out.println(actualReceipt);
+        assertEquals("Квитанция не совпадает", expectedReceipt, actualReceipt);
 
     }
 

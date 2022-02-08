@@ -19,12 +19,12 @@ public class BunTest {
     }
 
     @Before
-    public void setUp(){
+    public void setUp() {
         bun = new Bun(name, price);
     }
 
     @Parameterized.Parameters
-    public static Object[][] setBun(){
+    public static Object[][] setBun() {
         return new Object[][]{
                 {"white bun", 123.45F},
                 {"black bun", 200},
@@ -35,15 +35,15 @@ public class BunTest {
     }
 
     @Test
-    public void getNameTest(){
+    public void getNameTest() {
         String actualName = bun.getName();
-        assertEquals(actualName, name);
+        assertEquals("Имя не совпадает", name, actualName);
     }
 
     @Test
-    public void getPriceTest(){
+    public void getPriceTest() {
         float actualPrice = bun.getPrice();
-        assertEquals(actualPrice, price, 0);
+        assertEquals("Цена не совпадает", price, actualPrice, 0);
 
     }
 

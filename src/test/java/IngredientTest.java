@@ -20,36 +20,38 @@ public class IngredientTest {
         this.name = name;
         this.price = price;
     }
+
     @Parameterized.Parameters
-    public static Object[][] setIngredient(){
+    public static Object[][] setIngredient() {
         return new Object[][]{
                 {IngredientType.FILLING, "name1", 200},
-                {IngredientType.SAUCE, "name2", 500}
+                {IngredientType.SAUCE, "name2", 500},
         };
     }
+
     @Test
-    public void getTypeIngredientTest(){
+    public void getTypeIngredientTest() {
         Ingredient ingredient = new Ingredient(type, name, price);
         IngredientType actualType = ingredient.getType();
         IngredientType expectedType = ingredient.type;
-        assertEquals(actualType, expectedType);
+        assertEquals("Тип ингредиента не совпадает", expectedType, actualType);
 
     }
 
     @Test
-    public void getNameIngredientTest(){
+    public void getNameIngredientTest() {
         Ingredient ingredient = new Ingredient(type, name, price);
         String actualName = ingredient.getName();
         String expectedName = ingredient.name;
-        assertEquals(actualName, expectedName);
+        assertEquals("Имя ингредиента не совпадает", expectedName, actualName);
     }
 
     @Test
-    public void getPriceIngredientTest(){
+    public void getPriceIngredientTest() {
         Ingredient ingredient = new Ingredient(type, name, price);
-        float  actualPrice = ingredient.getPrice();
-        float  expectedPrice = ingredient.price;
-        assertEquals(actualPrice, expectedPrice, 0);
+        float actualPrice = ingredient.getPrice();
+        float expectedPrice = ingredient.price;
+        assertEquals("Цена ингредиента не совпадает", expectedPrice, actualPrice ,0);
     }
 
 }
